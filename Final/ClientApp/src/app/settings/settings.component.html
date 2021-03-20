@@ -1,0 +1,29 @@
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+<div class="alert alert-success" *ngIf="successMessage">
+  {{ successMessage }}
+</div>
+
+<form #todoForm="ngForm">
+  <div class="form-group">
+    <label for="Days">Days</label>
+    <input id="Days" name="Days" class="form-control"
+           [(ngModel)]="setting.WarningDays" #Days="ngModel">
+
+    <div>
+      <label for="Hours">Hours</label>
+      <input id="Hours" name="Hours" class="form-control"
+             required minlength="4"
+             [(ngModel)]="setting.WarningHours" #Hours="ngModel">
+
+
+
+    </div>
+  </div>
+  
+
+  <button [disabled]="todoForm.invalid" class="btn btn-primary" (click)="updateSetting(setting)">Save Settings</button>
+
+</form>
+

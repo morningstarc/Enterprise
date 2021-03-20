@@ -1,0 +1,44 @@
+
+  <div class="container-fluid">
+    <div *ngIf="items.length == 0">
+      Loading...
+    </div>
+    <!--<div *ngIf="errorOccured">
+    <div class="alert alert-danger" role="alert">
+      Something went wrong!
+    </div>
+  </div>-->
+
+
+
+    <table class="table table-striped" *ngIf="items.length != 0">
+    <thead>
+      <tr>
+        <th>To Do</th>
+        <th> Description</th>
+        <th>Due Date</th>
+        <th></th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        
+        <td>{{ item.Name }}</td>
+        <td>{{ item.Description }}</td>
+        <td>{{ item.DueDate | date: 'short'}}</td>
+        <td>
+          <div class="btn-toolbar">
+            <a class="btn btn-danger btn-sm m-sm-1" (click)="deleteItem(item.Id)">Delete Item</a>
+            <a class="btn btn-info btn-sm m-sm-1" [routerLink]="['/edit',item.Id]">Edit Item</a>
+            <a class="btn btn-success btn-sm m-sm-1" (click)="markComplete(item)">Mark Complete</a>
+
+          </div>
+
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+  </div>

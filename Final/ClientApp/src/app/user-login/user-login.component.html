@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="card card-login mx-auto mt-5">
+
+    <div class="card-header">Login</div>
+    <div class="card-body">
+      <form #loginUserForm="ngForm">
+        <div class="form-group">
+          <div class="form-label-group">
+            <input type="text" name="name" id="name" class="form-control" placeholder="User Name"
+                   required="required" [(ngModel)]="userCreds.username" #name="ngModel">
+            <div *ngIf="name?.invalid && (name.dirty || name.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="name?.errors.required">
+                User Name is required.
+              </div>
+              <label for="name">User Name</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" name="password" class="form-control"
+                 required type="password" [(ngModel)]="userCreds.password" #password="ngModel" />
+          <div *ngIf="password.invalid && (password.dirty || password.touched)"
+               class="alert alert-danger">
+            <div *ngIf="password.errors.required">
+              Password is required.
+            </div>
+          </div>
+        </div>
+        <button class="btn-primary btn" (click)="loginUser()"
+                [disabled]="loginUserForm.invalid">
+          Login
+        </button>
+      </form>
+      <div class="text-center">
+        <a class="d-block small mt-3" [routerLink]="['/usr/create']">Register an Account</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="alert alert-danger card-error mx-auto mt-5" *ngIf="errorMessage">{{errorMessage}}</div>
+</div>
+
+
